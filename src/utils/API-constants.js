@@ -1,0 +1,1 @@
+export const RESTAURANT_API = " https://namastedev.com/api/v1/listRestaurants"

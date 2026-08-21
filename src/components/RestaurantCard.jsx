@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FOOD_IMAGE } from "../utils/Link-constants";
 
 const RestaurantCard = (props) => {
+  const [fevaurite, setFevaurite] = useState();
+
+  const handleClick = () => {
+    setFevaurite(!fevaurite);
+  };
+
   return (
     <div className="group bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
       {/* Image */}
@@ -14,11 +20,17 @@ const RestaurantCard = (props) => {
 
         {/* Discount */}
         <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-orange-600 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
-          20% OFF
+          {props.resData?.aggregatedDiscountInfoV3?.header}
         </div>
 
         {/* Favourite */}
-        <button className="absolute top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition">
+        <button
+          className="absolute top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition  "
+          onClick={handleClick}
+          style={{
+            backgroundColor: fevaurite ? "tomato" : "lightblue",
+            
+          }}>
           ♡
         </button>
       </div>
@@ -26,23 +38,31 @@ const RestaurantCard = (props) => {
       {/* Content */}
       <div className="p-5">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-lg font-bold text-gray-900">{props.resName}</h3>
+          <h3 className="text-lg font-bold text-gray-900">
+            {props.resData?.name}
+          </h3>
 
           <div className="flex items-center gap-1 bg-green-50 text-green-700 px-2 py-1 rounded-lg text-sm font-bold">
-            ⭐ {props.ratting}
+            ⭐ {props.resData?.avgRating}
           </div>
         </div>
 
         <p className="text-gray-500 text-sm mt-2">
-          Biryani • Andhra • South Indian
+          {props.resData?.cuisines[0] +
+            " • " +
+            props.resData?.cuisines[1] +
+            " • " +
+            props.resData?.cuisines[2]}
         </p>
 
         <div className="flex items-center gap-4 mt-4 text-sm text-gray-500">
-          <span className="flex items-center gap-1">🕒 20–30 mins</span>
+          <span className="flex items-center gap-1">
+            🕒 {props.resData?.sla?.slaString}
+          </span>
 
           <span>•</span>
 
-          <span>₹300 for two</span>
+          <span>{props.resData?.costForTwo}</span>
         </div>
 
         <div className="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between">
