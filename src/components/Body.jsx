@@ -11,12 +11,13 @@ import {
 } from "../utils/Web-constants";
 import ParticleBackground from "./ParticleBackground";
 import { RESTAURANT_API } from "../utils/API-constants";
+import ShimmerCard from "./ShimmerCard";
 
 const Body = () => {
   // store restaurant data
   const [restaurants, setRestaurants] = useState([]);
-
   
+
   // Fetch reataurant api
   const fetchAPI = async () => {
     const data = await fetch(RESTAURANT_API);
@@ -26,13 +27,14 @@ const Body = () => {
     const restaurantList =
       json.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
-
     setRestaurants(restaurantList);
     console.log(restaurantList);
   };
+
   useEffect(() => {
     fetchAPI();
   }, []);
+
   return (
     <main className="relative bg-[#fafafa] min-h-screen overflow-hidden">
       {/* Interactive Particle Background */}
@@ -63,7 +65,7 @@ const Body = () => {
 
         {/* Restaurant Section */}
         <section className="max-w-7xl mx-auto px-6 pb-16">
-          <iv className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-2xl font-bold text-gray-900">
                 {POPULAR_RESTAURANTS}
@@ -77,15 +79,19 @@ const Body = () => {
             <button className="text-orange-500 font-semibold text-sm hover:underline">
               View all →
             </button>
-          </iv>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
-            {restaurants.map((restaurant) => (
-              <RestaurantCard
-                key={restaurant.info.id}
-                resData={restaurant.info}
-              />
-            ))}
+            {restaurants.length === 0
+              ? Array(8)
+                  .fill("")
+                  .map((_, index) => <ShimmerCard key={index} />)
+              : restaurants.map((restaurant) => (
+                  <RestaurantCard
+                    key={restaurant.info.id}
+                    resData={restaurant.info}
+                  />
+                ))}
           </div>
         </section>
       </div>
