@@ -102,7 +102,7 @@ const MenuItem = ({ item }) => {
         </div>
 
         {/* Image + Add */}
-        <div className="relative w-36 sm:w-40 flex-shrink-0">
+        <div className="relative w-36 sm:w-40 shrink-0">
           <div className="w-full h-36 rounded-2xl overflow-hidden bg-gray-100">
             {imageUrl ? (
               <img

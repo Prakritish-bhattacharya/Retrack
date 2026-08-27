@@ -126,7 +126,7 @@ const fetchRestaurantMenu = async () => {
           <span className="text-gray-700 font-semibold">{resInfo.name}</span>
         </div>
 
-        <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-4xl border border-gray-100 shadow-sm overflow-hidden">
           {/* Restaurant Image */}
           {restaurantImage && (
             <div className="h-64 md:h-80 overflow-hidden">
@@ -156,7 +156,7 @@ const fetchRestaurantMenu = async () => {
               </div>
 
               {/* Rating */}
-              <div className="bg-green-50 border border-green-100 rounded-2xl px-5 py-4 min-w-[130px]">
+              <div className="bg-green-50 border border-green-100 rounded-2xl px-5 py-4 min-w-32.5">
                 <div className="text-green-700 text-lg font-extrabold">
                   ★ {resInfo.avgRating}
                 </div>
@@ -221,7 +221,7 @@ const fetchRestaurantMenu = async () => {
         </div>
 
         {/* Search */}
-        <div className="sticky top-[80px] z-30 mb-7">
+        <div className="sticky top-20 z-30 mb-7">
           <div className="bg-white border border-gray-100 shadow-md rounded-2xl px-5 py-3 flex items-center gap-3">
             <span className="text-xl">🔍</span>
 
