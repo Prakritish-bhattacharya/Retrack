@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FOOD_IMAGE } from "../utils/Link-constants";
+import { Link } from "react-router-dom";
+
 
 const RestaurantCard = (props) => {
   const [fevaurite, setFevaurite] = useState();
@@ -29,7 +31,6 @@ const RestaurantCard = (props) => {
           onClick={handleClick}
           style={{
             backgroundColor: fevaurite ? "tomato" : "lightblue",
-            
           }}>
           ♡
         </button>
@@ -70,9 +71,13 @@ const RestaurantCard = (props) => {
             Free delivery
           </span>
 
-          <button className="text-orange-500 font-bold text-sm hover:text-orange-600">
-            View menu →
-          </button>
+          <Link
+            to={`/restaurant-menu/${props.resData?.id}`}
+            className="text-orange-500 font-bold text-sm hover:text-orange-600">
+            <button className="text-orange-500 font-bold text-sm hover:text-orange-600">
+              View menu →
+            </button>
+          </Link>
         </div>
       </div>
     </div>

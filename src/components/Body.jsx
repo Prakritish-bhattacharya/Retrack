@@ -16,19 +16,18 @@ import ShimmerCard from "./ShimmerCard";
 const Body = () => {
   // store restaurant data
   const [restaurants, setRestaurants] = useState([]);
-  
 
   // Fetch reataurant api
   const fetchAPI = async () => {
     const data = await fetch(RESTAURANT_API);
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     // extract restaurants from API response
     const restaurantList =
       json.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setRestaurants(restaurantList);
-    console.log(restaurantList);
+    // console.log(restaurantList);
   };
 
   useEffect(() => {

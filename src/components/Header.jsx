@@ -9,6 +9,7 @@ import {
   FOODIE,
   HOME,
 } from "../utils/Web-constants";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,23 +45,26 @@ const Header = () => {
           <nav className="hidden md:block">
             <ul className="flex items-center gap-2">
               <li>
-                <button className="relative px-4 py-2 text-sm font-semibold text-orange-500 rounded-xl bg-orange-50">
+               <Link to='/'> <button className="relative px-4 py-2 text-sm font-semibold text-orange-500 rounded-xl bg-orange-50">
                   {HOME}
 
                   <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-orange-500" />
-                </button>
+                </button></Link>
               </li>
 
               <li>
-                <button className="px-4 py-2 text-sm font-semibold text-gray-500 rounded-xl hover:text-orange-500 hover:bg-orange-50 transition-all duration-200">
-                  {ABOUT_US}
-                </button>
+                <Link to='/about'>
+                  
+                  <button className="px-4 py-2 text-sm font-semibold text-gray-500 rounded-xl hover:text-orange-500 hover:bg-orange-50 transition-all duration-200">
+                    {ABOUT_US}
+                  </button>
+                </Link>
               </li>
 
               <li>
-                <button className="px-4 py-2 text-sm font-semibold text-gray-500 rounded-xl hover:text-orange-500 hover:bg-orange-50 transition-all duration-200">
+                <Link to='contact'><button className="px-4 py-2 text-sm font-semibold text-gray-500 rounded-xl hover:text-orange-500 hover:bg-orange-50 transition-all duration-200">
                   {CONTACT_US}
-                </button>
+                </button></Link>
               </li>
             </ul>
           </nav>
